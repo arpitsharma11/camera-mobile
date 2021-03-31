@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import Camera from './Camera';
+import React from 'react';
+
+// import { Camera } from 'react-cam';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return (<Camera />);
 }
+
+// function capture(imgSrc) {
+//   console.log(imgSrc);
+// }
+
+// const App = () => {
+//   const cam = useRef(null);
+//   return (
+//     <React.Fragment>
+//       <Camera
+//         showFocus={true}
+//         front={false}
+//         capture={capture}
+//         ref={cam}
+//         width="80%"
+//         height="auto"
+//         focusWidth="80%"
+//         focusHeight="60%"
+//         btnColor="white"
+//       />
+//       <button onClick={img => cam.current.capture(img)}>Take image</button>
+//     </React.Fragment>
+//   );
+// };
 
 export default App;
