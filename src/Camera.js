@@ -27,7 +27,7 @@ export const Camera = () => {
   return (
     <div>
 			<div>Camera</div>
-			<video style={streamAvailable ? {}: {display:'none'} } ref={videoRef} muted autoPlay playsInline controls={false} />
+			<video style={streamAvailable ? {}: {display:'none'} } ref={videoRef} muted playsInline controls={false} />
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>
 			<button onClick={toggleCamera} >Rotate</button>
 		</div>

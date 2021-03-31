@@ -75,10 +75,10 @@ export function useCameraStream(cameraStatus, backCamera) {
 	useEffect(() => {
 		if(mediaStream && videoRef && videoRef.current){
 			videoRef.current.srcObject = mediaStream;
-		}
-		if(mediaStream){
+			videoRef.current.play();
 			setStreamAvailable(true);
-		}else{
+		}
+		if(!mediaStream){
 			setStreamAvailable(false);
 		}
 	}, [mediaStream, videoRef]);
