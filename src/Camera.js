@@ -9,21 +9,6 @@ export const Camera = () => {
 
 	const { toggleCamera, videoRef, loading, streamAvailable } = useCameraStream(start, false);
 
-	// const openMediaDevices = async (constraints) => {
-  //   return await navigator.mediaDevices.getUserMedia(constraints);
-	// }
-
-	// const init = async () => {
-	// 	try {
-	// 		const stream = await openMediaDevices({'video':true,'audio':true});
-	// 		console.log('Got MediaStream:', stream);
-	// 		cameraRef.current.srcObject = stream;
-	// 	} catch(error) {
-	// 		console.error('Error accessing media devices.', error);
-	// 		alert('error');
-	// 	}
-	// }
-
   return (
     <div>
 			<div>Camera</div>
