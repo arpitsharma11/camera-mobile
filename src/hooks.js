@@ -3,10 +3,10 @@ import { useState, useEffect, useRef } from 'react';
 
 const CONSTRAINTS = {
 	BASIC: {audio:false,  video: true},
-	BACK_CAMERA: {audio:false,  video: { facingMode: { exact: "environment" }, width: { exact: 640 }, height: { exact: 480 } }},
+	BACK_CAMERA: {audio:false,  video: { facingMode: { exact: "environment" }, width: { min: 640, ideal: 1920, max: 1920 },
+    height: { min: 400, ideal: 1080 } }},
 	FRONT_CAMERA: {audio:false,  video: { facingMode: { exact: "user" }, width: { exact: 640 }, height: { exact: 480 } }}
 }
-
 let initialLoadDone = false;
 
 export function useCameraStream(cameraStatus, backCamera) {
