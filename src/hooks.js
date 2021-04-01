@@ -3,8 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 
 const CONSTRAINTS = {
 	BASIC: {audio:false,  video: true},
-	BACK_CAMERA: {audio:false,  video: { facingMode: { exact: "environment" } }},
-	FRONT_CAMERA: {audio:false,  video: { facingMode: { exact: "user" } }}
+	BACK_CAMERA: {audio:false,  video: { facingMode: { exact: "environment" }, width: { exact: 640 }, height: { exact: 480 } }},
+	FRONT_CAMERA: {audio:false,  video: { facingMode: { exact: "user" }, width: { exact: 640 }, height: { exact: 480 } }}
 }
 
 let initialLoadDone = false;

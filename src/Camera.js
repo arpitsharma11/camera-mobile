@@ -33,7 +33,7 @@ export const Camera = () => {
 	return (
 		<div>
 			<div>Camera</div>
-			<video onPause={onPlay} hidden={!isVideoPlaying} ref={videoRef} muted playsInline autoPlay onCanPlay={handleCanPlay} controls={false} />
+			<video hidden={!isVideoPlaying} ref={videoRef} muted playsInline onCanPlay={handleCanPlay} controls={false} />
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>
 			<button onClick={toggleCamera} >Rotate</button>
 		</div>
