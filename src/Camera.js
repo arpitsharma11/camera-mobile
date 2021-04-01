@@ -26,8 +26,12 @@ export const Camera = () => {
 		}
 	}, [streamAvailable])
 
-  return (
-    <div>
+	useEffect(() => {
+		console.log('isVideoPlaying', isVideoPlaying);
+	}, [isVideoPlaying]);
+
+	return (
+		<div>
 			<div>Camera</div>
 			<video onPause={onPlay} hidden={!isVideoPlaying} ref={videoRef} muted playsInline autoPlay onCanPlay={handleCanPlay} controls={false} />
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>
