@@ -58,7 +58,7 @@ export function useCameraStream(cameraStatus, backCamera) {
 	const updateMediaDevices = async () => {
 		try {
 			setSwitchingCamera(true);
-			const tracks = mediaStream.getTracks();
+			// const tracks = mediaStream.getTracks();
 			videoRef.current.pause();
 			// tracks.forEach(track => track.stop());
 			// setMediaStream(null);
