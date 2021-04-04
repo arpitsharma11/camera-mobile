@@ -24,6 +24,7 @@ export function useCameraStream(cameraStatus, backCamera) {
 	const [switchingCamera, setSwitchingCamera] = useState(false);
 
 	const videoRef = useRef();
+	const testVideoRef = useRef();
 
 	const openMediaDevices = async (constraints) => {
 		setLoading(true);
@@ -59,11 +60,15 @@ export function useCameraStream(cameraStatus, backCamera) {
 		try {
 			setSwitchingCamera(true);
 			// const tracks = mediaStream.getTracks();
-			videoRef.current.pause();
+			// videoRef.current.pause();
+			testVideoRef.current.hidden = false;
+			videoRef.current.hidden = true;
 			// tracks.forEach(track => track.stop());
-			// setMediaStream(null);
+			setMediaStream(null);
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
-			videoRef.current.play();
+			// videoRef.current.play();
+			testVideoRef.current.hidden = true;
+			videoRef.current.hidden = false;
 			setMediaStream(stream);
 		} catch(error) {
 			console.log(error);
@@ -85,6 +90,7 @@ export function useCameraStream(cameraStatus, backCamera) {
 	useEffect(() => {
 		if(mediaStream && videoRef && videoRef.current){
 			videoRef.current.srcObject = mediaStream;
+			testVideoRef.current.srcObject = mediaStream;
 			setStreamAvailable(true);
 		}
 		if(!mediaStream){
@@ -106,5 +112,5 @@ export function useCameraStream(cameraStatus, backCamera) {
 		}
 	}, [frontCamera]);
 	
-	return { toggleCamera, videoRef, loading, streamAvailable, switchingCamera };
+	return { toggleCamera, videoRef, loading, streamAvailable, switchingCamera, testVideoRef };
 }

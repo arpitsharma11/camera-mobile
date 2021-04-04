@@ -10,7 +10,7 @@ export const Camera = () => {
 	const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 	// const cameraRef = useRef();
 
-	const { toggleCamera, videoRef, loading, streamAvailable, switchingCamera } = useCameraStream(start, false);
+	const { toggleCamera, videoRef, testVideoRef, loading, streamAvailable, switchingCamera } = useCameraStream(start, false);
 
 	const handleCanPlay = () => {
 		console.log('pipipi');
@@ -36,10 +36,12 @@ export const Camera = () => {
 	return (
 		<div>
 			<div>Camera</div>
-			<video id="cameraTest"  width={`${width}px`} height="600px" autoPlay hidden={!isVideoPlaying} ref={videoRef} muted playsInline onCanPlay={handleCanPlay} controls={false} 
-				style={switchingCamera ? { 
+			<video width={`${width}px`} height="600px" autoPlay hidden={true} ref={testVideoRef} muted playsInline onCanPlay={handleCanPlay} controls={false} 
+				style={ { 
 					filter: 'blur(15px)',
-					objectFit: 'cover', } : {}}
+					objectFit: 'cover', }}
+			/>
+			<video id="cameraTest"  width={`${width}px`} height="600px" autoPlay hidden={!isVideoPlaying} ref={videoRef} muted playsInline onCanPlay={handleCanPlay} controls={false} 
 			/>
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>
 			<button onClick={toggleCamera} >Rotate</button>
