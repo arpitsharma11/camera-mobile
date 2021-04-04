@@ -59,8 +59,9 @@ export function useCameraStream(cameraStatus, backCamera) {
 		try {
 			setSwitchingCamera(true);
 			const tracks = mediaStream.getTracks();
-			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
 			tracks.forEach(track => track.stop());
+			setMediaStream(null);
+			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
 			setMediaStream(stream);
 		} catch(error) {
 			console.log(error);
