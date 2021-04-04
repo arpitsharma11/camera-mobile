@@ -2,13 +2,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useCameraStream } from './hooks';
 
+const width = window.innerWidth;
+
 export const Camera = () => {
 
 	const [start, setStart] = useState({});
 	const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 	// const cameraRef = useRef();
 
-	const { toggleCamera, videoRef, loading, streamAvailable } = useCameraStream(start, false);
+	const { toggleCamera, videoRef, loading, streamAvailable, switchingCamera } = useCameraStream(start, false);
 
 	const handleCanPlay = () => {
 		console.log('pipipi');
@@ -21,9 +23,10 @@ export const Camera = () => {
 	}
 
 	useEffect(() => {
-		if(!streamAvailable){
-			setIsVideoPlaying(false);
-		}
+		console.log('lalalalalal', streamAvailable);
+		// if(!streamAvailable){
+		// 	setIsVideoPlaying(false);
+		// }
 	}, [streamAvailable])
 
 	useEffect(() => {
@@ -33,7 +36,11 @@ export const Camera = () => {
 	return (
 		<div>
 			<div>Camera</div>
-			<video autoPlay hidden={!isVideoPlaying} ref={videoRef} muted playsInline onCanPlay={handleCanPlay} controls={false} />
+			<video  width={`${width}px`} height="600px" autoPlay hidden={!isVideoPlaying} ref={videoRef} muted playsInline onCanPlay={handleCanPlay} controls={false} 
+				style={switchingCamera ? { 
+					filter: 'blur(15px)',
+					objectFit: 'cover', } : {}}
+			/>
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>
 			<button onClick={toggleCamera} >Rotate</button>
 		</div>

@@ -3,9 +3,15 @@ import { useState, useEffect, useRef } from 'react';
 
 const CONSTRAINTS = {
 	BASIC: {audio:false,  video: true},
-	BACK_CAMERA: {audio:false,  video: { facingMode: { exact: "environment" }, width: { min: 640, ideal: 1920, max: 1920 },
-    height: { min: 400, ideal: 1080 } }},
-	FRONT_CAMERA: {audio:false,  video: { facingMode: { exact: "user" }, width: { exact: 640 }, height: { exact: 480 } }}
+    FRONT_CAMERA: { audio: false, video: { facingMode: { exact: 'user' } } },
+  	BACK_CAMERA: {
+		audio: false,
+		video: {
+		facingMode: { exact: 'environment' },
+		width: { min: 640, ideal: 1920, max: 1920 },
+		height: { min: 400, ideal: 1080 },
+		},
+	},
 }
 let initialLoadDone = false;
 
@@ -15,6 +21,7 @@ export function useCameraStream(cameraStatus, backCamera) {
 	const [frontCamera, setFrontCamera] = useState(backCamera ? false : true);
 	const [loading, setLoading] = useState(true);
 	const [streamAvailable, setStreamAvailable] = useState(false);
+	const [switchingCamera, setSwitchingCamera] = useState(false);
 
 	const videoRef = useRef();
 
@@ -50,10 +57,10 @@ export function useCameraStream(cameraStatus, backCamera) {
 
 	const updateMediaDevices = async () => {
 		try {
+			setSwitchingCamera(true);
 			const tracks = mediaStream.getTracks();
-			tracks.forEach(track => track.stop());
-			setMediaStream(null);
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
+			tracks.forEach(track => track.stop());
 			setMediaStream(stream);
 		} catch(error) {
 			console.log(error);
@@ -80,6 +87,10 @@ export function useCameraStream(cameraStatus, backCamera) {
 		if(!mediaStream){
 			setStreamAvailable(false);
 		}
+
+		if(mediaStream && switchingCamera){
+			setSwitchingCamera(false);
+		}
 	}, [mediaStream, videoRef]);
 
 	useEffect(() => {
@@ -92,5 +103,5 @@ export function useCameraStream(cameraStatus, backCamera) {
 		}
 	}, [frontCamera]);
 	
-	return { toggleCamera, videoRef, loading, streamAvailable };
+	return { toggleCamera, videoRef, loading, streamAvailable, switchingCamera };
 }
