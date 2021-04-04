@@ -24,9 +24,9 @@ export const Camera = () => {
 
 	useEffect(() => {
 		console.log('lalalalalal', streamAvailable);
-		// if(!streamAvailable){
-		// 	setIsVideoPlaying(false);
-		// }
+		if(!streamAvailable){
+			setIsVideoPlaying(false);
+		}
 	}, [streamAvailable])
 
 	useEffect(() => {
