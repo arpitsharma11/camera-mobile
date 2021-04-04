@@ -36,7 +36,7 @@ export const Camera = () => {
 	return (
 		<div>
 			<div>Camera</div>
-			<video  width={`${width}px`} height="600px" autoPlay hidden={!isVideoPlaying} ref={videoRef} muted playsInline onCanPlay={handleCanPlay} controls={false} 
+			<video id="cameraTest"  width={`${width}px`} height="600px" autoPlay hidden={!isVideoPlaying} ref={videoRef} muted playsInline onCanPlay={handleCanPlay} controls={false} 
 				style={switchingCamera ? { 
 					filter: 'blur(15px)',
 					objectFit: 'cover', } : {}}
