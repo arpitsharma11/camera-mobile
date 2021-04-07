@@ -32,9 +32,8 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 	const testVideoRef = useRef();
 
 	const openMediaDevices = async (constraints) => {
-		setLoading(true);
+		console.log('opening camera', constraints);
     	const getUserMediaResult =  await navigator.mediaDevices.getUserMedia(constraints);
-		setLoading(false);
 		return getUserMediaResult;
 	}
 
@@ -84,6 +83,7 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
 
 			cameraStream = stream;
+			console.log('Got MediaStream:', stream);
 			videoRef.current.srcObject = cameraStream;
 			// videoRef.current.hidden = false;
 			// videoRef.current.play();
