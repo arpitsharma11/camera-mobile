@@ -58,7 +58,7 @@ export const Camera = () => {
 				onPlaying={onPlaying}
 			/>
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>
-			{/* <button onClick={toggleCamera} >Rotate</button> */}
+			<button onClick={toggleCamera} >Rotate</button>
 		</div>
 	);
 }

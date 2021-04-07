@@ -14,11 +14,12 @@ const CONSTRAINTS = {
 	},
 }
 let initialLoadDone = false;
+let frontCamera = true;
 
 export function useCameraStream(cameraStatus, backCamera) {
 
 	const [mediaStream, setMediaStream] = useState(null);
-	const [frontCamera, setFrontCamera] = useState(backCamera ? false : true);
+	// const [frontCamera, setFrontCamera] = useState(backCamera ? false : true);
 	const [loading, setLoading] = useState(true);
 	const [streamAvailable, setStreamAvailable] = useState(false);
 	const [switchingCamera, setSwitchingCamera] = useState(false);
@@ -76,7 +77,9 @@ export function useCameraStream(cameraStatus, backCamera) {
 	}
 
 	const toggleCamera = () => {
-		setFrontCamera(!frontCamera);
+		frontCamera = !frontCamera;
+		console.log('frontCamera', frontCamera);
+		updateMediaDevices();
 	}
 	
 	useEffect(() => {
