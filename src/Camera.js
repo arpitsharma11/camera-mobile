@@ -13,17 +13,17 @@ export const Camera = () => {
 	// const cameraRef = useRef();
 
 	const onChange = () => {
-		console.log('switchinggggg');
-		videoRef.current.hidden = true;
-		setIsVideoPlaying(false);
+		// console.log('switchinggggg');
+		// videoRef.current.hidden = true;
+		// setIsVideoPlaying(false);
 	}
 
-	const { toggleCamera, videoRef, testVideoRef, loading, streamAvailable, switchingCamera, firstCameraStream, backCameraStream } = useCameraStream(start, false, onChange );
+	const { toggleCamera, videoRef, videoConRef, testVideoRef, loading, streamAvailable, switchingCamera, firstCameraStream, backCameraStream } = useCameraStream(start, false, onChange );
 
-	const handleCanPlay = () => {
-		console.log('handleCanPlay');
-		videoRef.current.hidden = false;
-	}
+	// const handleCanPlay = () => {
+	// 	console.log('handleCanPlay');
+	// 	videoRef.current.hidden = false;
+	// }
 
 	const onPlay = () => {
 		console.log('onPlay');
@@ -54,21 +54,23 @@ export const Camera = () => {
 	return (
 		<div>
 			<div>Camera</div>
-			<video
-				id="cameraTest"
-				width={`${width}px`}
-				height="600px"
-				autoPlay
-				ref={videoRef}
-				muted
-				onCanPlay={handleCanPlay}
-				controls={false}
-				onPause={onPause}
-				onPlay={onPlay}
-				onLoadStart={onLoadStart}
-				onLoadedData={onLoadedData}
-				hidden
-			/>
+			<div ref={videoConRef} >
+				{/* <video
+					id="cameraTest"
+					width={`${width}px`}
+					height="600px"
+					autoPlay
+					ref={videoRef}
+					muted
+					onCanPlay={handleCanPlay}
+					controls={false}
+					onPause={onPause}
+					onPlay={onPlay}
+					onLoadStart={onLoadStart}
+					onLoadedData={onLoadedData}
+					hidden
+				/> */}
+			</div>
 			{/* {!isVideoPlaying && <div>Loading</div>} */}
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>
 			<button onClick={toggleCamera} >Rotate</button>
