@@ -16,7 +16,7 @@ const CONSTRAINTS = {
 let initialLoadDone = false;
 let frontCamera = true;
 
-export function useCameraStream(cameraStatus, backCamera) {
+export function useCameraStream(cameraStatus, backCamera, onChange) {
 
 	const [mediaStream, setMediaStream] = useState(null);
 	// const [frontCamera, setFrontCamera] = useState(backCamera ? false : true);
@@ -60,6 +60,7 @@ export function useCameraStream(cameraStatus, backCamera) {
 	const updateMediaDevices = async () => {
 		try {
 			setSwitchingCamera(true);
+			onChange();
 			// const tracks = mediaStream.getTracks();
 			// videoRef.current.pause();
 			// testVideoRef.current.hidden = false;

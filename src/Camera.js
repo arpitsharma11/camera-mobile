@@ -10,7 +10,7 @@ export const Camera = () => {
 	const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 	// const cameraRef = useRef();
 
-	const { toggleCamera, videoRef, testVideoRef, loading, streamAvailable, switchingCamera } = useCameraStream(start, false);
+	const { toggleCamera, videoRef, testVideoRef, loading, streamAvailable, switchingCamera } = useCameraStream(start, false, onChange);
 
 	const handleCanPlay = () => {
 		console.log('handleCanPlay');
@@ -30,11 +30,16 @@ export const Camera = () => {
 		console.log('onPlaying');
 	}
 
-	useEffect(() => {
-		if(!streamAvailable){
-			setIsVideoPlaying(false);
-		}
-	}, [streamAvailable])
+	const onChange = () => {
+		console.log('switchinggggg');
+		setIsVideoPlaying(false);
+	}
+
+	// useEffect(() => {
+	// 	if(!streamAvailable){
+	// 		setIsVideoPlaying(false);
+	// 	}
+	// }, [streamAvailable])
 
 	useEffect(() => {
 		console.log('isVideoPlaying', isVideoPlaying);
