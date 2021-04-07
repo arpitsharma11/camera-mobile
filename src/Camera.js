@@ -20,21 +20,10 @@ export const Camera = () => {
 
 	const { toggleCamera, videoRef, testVideoRef, loading, streamAvailable, switchingCamera, firstCameraStream, backCameraStream } = useCameraStream(start, false, onChange );
 
-	// const handleCanPlay = () => {
-	// 	console.log('handleCanPlay');
-	// 	if(firstLoad){
-	// 		console.log('handleCanPlay without time');
-	// 		setIsVideoPlaying(true);
-	// 		videoRef.current.hidden = false;
-	// 		firstLoad = false;
-	// 	}else{
-	// 		console.log('handleCanPlay with time');
-	// 		setTimeout(() => {
-	// 			setIsVideoPlaying(true);
-	// 			videoRef.current.hidden = false;
-	// 		}, 100)
-	// 	}
-	// }
+	const handleCanPlay = () => {
+		console.log('handleCanPlay');
+		videoRef.current.hidden = false;
+	}
 
 	const onPlay = () => {
 		console.log('onPlay');

@@ -58,9 +58,6 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			// setMediaStream(stream);
 			cameraStream = stream;
 			videoRef.current.srcObject = cameraStream;
-			videoRef.current.play();
-			videoRef.current.hidden = false;
-			// videoRef.current.hidden = false;
 		} catch(error) {
 			console.error('Error accessing media devices.', error);
 			console.log('OverconstrainedError', error.name);
@@ -88,18 +85,6 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			cameraStream = stream;
 			console.log('Got MediaStream:', stream);
 			videoRef.current.srcObject = cameraStream;
-			videoRef.current.play();
-			videoRef.current.hidden = false;
-			// videoRef.current.hidden = false;
-			// videoRef.current.play();
-			// testVideoRef.current.hidden = true;
-			// videoRef.current.hidden = false;
-			// if(frontCamera){
-			// 	setFirstCameraStream(stream);
-			// 	setBackCameraStream(null);
-			// }else{
-			// 	setBackCameraStream(stream);
-			// }
 		} catch(error) {
 			console.log(error);
 		}
