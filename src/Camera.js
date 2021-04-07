@@ -4,6 +4,8 @@ import { useCameraStream } from './hooks';
 
 const width = window.innerWidth;
 
+let firstLoad = true;
+
 export const Camera = () => {
 
 	const [start, setStart] = useState({});
@@ -19,8 +21,18 @@ export const Camera = () => {
 
 	const handleCanPlay = () => {
 		console.log('handleCanPlay');
-		setIsVideoPlaying(true);
-		videoRef.current.play();
+		if(firstLoad){
+			console.log('handleCanPlay without time');
+			setIsVideoPlaying(true);
+			videoRef.current.play();
+			firstLoad = false;
+		}else{
+			console.log('handleCanPlay with time');
+			setTimeout(() => {
+				setIsVideoPlaying(true);
+				videoRef.current.play();
+			}, 100)
+		}
 	}
 
 	const onPlay = () => {
@@ -62,6 +74,7 @@ export const Camera = () => {
 				onPlay={onPlay}
 				onPlaying={onPlaying}
 			/>
+			{!isVideoPlaying && <div>Loading</div>}
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>
 			<button onClick={toggleCamera} >Rotate</button>
 		</div>
