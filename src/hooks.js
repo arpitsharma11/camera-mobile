@@ -64,7 +64,7 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			// const tracks = mediaStream.getTracks();
 			// videoRef.current.pause();
 			// testVideoRef.current.hidden = false;
-			videoRef.current.hidden = true;
+			// videoRef.current.hidden = true;
 			// tracks.forEach(track => track.stop());
 			setMediaStream(null);
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);

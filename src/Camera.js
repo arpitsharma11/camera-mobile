@@ -14,6 +14,7 @@ export const Camera = () => {
 
 	const onChange = () => {
 		console.log('switchinggggg');
+		videoRef.current.hidden = true;
 		setIsVideoPlaying(false);
 	}
 
@@ -25,12 +26,14 @@ export const Camera = () => {
 			console.log('handleCanPlay without time');
 			setIsVideoPlaying(true);
 			videoRef.current.play();
+			videoRef.current.hidden = false;
 			firstLoad = false;
 		}else{
 			console.log('handleCanPlay with time');
 			setTimeout(() => {
 				setIsVideoPlaying(true);
 				videoRef.current.play();
+				videoRef.current.hidden = false;
 			}, 100)
 		}
 	}
@@ -43,8 +46,12 @@ export const Camera = () => {
 		console.log('onPause');
 	}
 
-	const onPlaying = () => {
-		console.log('onPlaying');
+	const onLoadedData = () => {
+		console.log('onLoadedData');
+	}
+
+	const onLoadStart = () => {
+		console.log('onLoadStart');
 	}
 
 	// useEffect(() => {
@@ -65,14 +72,15 @@ export const Camera = () => {
 				width={`${width}px`}
 				height="600px"
 				autoPlay
-				hidden={!isVideoPlaying}
 				ref={videoRef}
 				muted
 				onCanPlay={handleCanPlay}
 				controls={false}
 				onPause={onPause}
 				onPlay={onPlay}
-				onPlaying={onPlaying}
+				onLoadStart={onLoadStart}
+				onLoadedData={onLoadedData}
+				hidden
 			/>
 			{!isVideoPlaying && <div>Loading</div>}
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>
