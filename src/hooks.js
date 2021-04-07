@@ -2,6 +2,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef } from 'react';
 
+const width = window.innerWidth;
+
+
 const CONSTRAINTS = {
 	BASIC: {audio:false,  video: true},
     FRONT_CAMERA: { audio: false, video: { facingMode: { exact: 'user' } } },
@@ -23,7 +26,17 @@ const createVideoTag = (stream) => {
 	cont.innerHTML = '';
 	const videoTag = document.createElement('video');
 	videoTag.srcObject = stream;
-	videoTag.play();	
+	videoTag.hidden = true;
+	videoTag.width = width;
+	videoTag.height= 600
+	videoTag.autoplay = true;
+	videoTag.controls = false;
+	videoTag.muted = true;
+	videoTag.oncanplay = () => {
+		console.log('handleCanPlay');
+		videoTag.hidden = false;
+	};
+	videoTag.play();
 	cont.appendChild(videoTag);
 }
 
