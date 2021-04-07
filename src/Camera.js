@@ -25,14 +25,12 @@ export const Camera = () => {
 		if(firstLoad){
 			console.log('handleCanPlay without time');
 			setIsVideoPlaying(true);
-			videoRef.current.play();
 			videoRef.current.hidden = false;
 			firstLoad = false;
 		}else{
 			console.log('handleCanPlay with time');
 			setTimeout(() => {
 				setIsVideoPlaying(true);
-				videoRef.current.play();
 				videoRef.current.hidden = false;
 			}, 100)
 		}
@@ -73,6 +71,21 @@ export const Camera = () => {
 				height="600px"
 				autoPlay
 				ref={videoRef}
+				muted
+				onCanPlay={handleCanPlay}
+				controls={false}
+				onPause={onPause}
+				onPlay={onPlay}
+				onLoadStart={onLoadStart}
+				onLoadedData={onLoadedData}
+				hidden
+			/>
+			<video
+				id="cameraTest"
+				width={`${width}px`}
+				height="600px"
+				autoPlay
+				ref={testVideoRef}
 				muted
 				onCanPlay={handleCanPlay}
 				controls={false}
