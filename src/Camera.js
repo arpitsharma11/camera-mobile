@@ -20,10 +20,10 @@ export const Camera = () => {
 
 	const { toggleCamera, videoRef, videoConRef, testVideoRef, loading, streamAvailable, switchingCamera, firstCameraStream, backCameraStream } = useCameraStream(start, false, onChange );
 
-	const handleCanPlay = () => {
-		console.log('handleCanPlay');
-		videoRef.current.hidden = false;
-	}
+	// const handleCanPlay = () => {
+	// 	console.log('handleCanPlay');
+	// 	videoRef.current.hidden = false;
+	// }
 
 	const onPlay = () => {
 		console.log('onPlay');
@@ -54,8 +54,8 @@ export const Camera = () => {
 	return (
 		<div>
 			<div>Camera</div>
-			<div ref={videoConRef} >
-				<video
+			<div ref={videoConRef}  id="testId" >
+				{/* <video
 					id="cameraTest"
 					width={`${width}px`}
 					height="600px"
@@ -69,7 +69,7 @@ export const Camera = () => {
 					onLoadStart={onLoadStart}
 					onLoadedData={onLoadedData}
 					hidden
-				/>
+				/> */}
 			</div>
 			{/* {!isVideoPlaying && <div>Loading</div>} */}
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>

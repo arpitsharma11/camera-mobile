@@ -18,6 +18,15 @@ let initialLoadDone = false;
 let frontCamera = true;
 let cameraStream = null;
 
+const createVideoTag = (stream) => {
+	const cont = document.getElementById('testId');
+	cont.innerHTML = '';
+	const videoTag = document.createElement('video');
+	videoTag.srcObject = stream;
+	videoTag.play();	
+	cont.appendChild(videoTag);
+}
+
 export function useCameraStream(cameraStatus, backCamera, onChange) {
 
 	const [mediaStream, setMediaStream] = useState(null);
@@ -46,10 +55,11 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 
 	const init = async () => {
 		try {
-			videoRef.current.hidden = true;
+			// videoRef.current.hidden = true;
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
 			console.log('Got MediaStream:', stream);
-			initialLoadDone = true;
+			createVideoTag(stream);
+			// initialLoadDone = true;
 			// if(frontCamera){
 			// 	setFirstCameraStream(stream);
 			// }else{
@@ -57,7 +67,7 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			// }
 			// setMediaStream(stream);
 			cameraStream = stream;
-			videoRef.current.srcObject = cameraStream;
+			// videoRef.current.srcObject = cameraStream;
 		} catch(error) {
 			console.error('Error accessing media devices.', error);
 			console.log('OverconstrainedError', error.name);
@@ -78,16 +88,17 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			// testVideoRef.current.hidden = false;
 			// videoRef.current.hidden = true;
 			// tracks.forEach(track => track.stop());
-			videoRef.current.hidden = true;
+			// videoRef.current.hidden = true;
 			cameraStream.getTracks().forEach(track => track.stop());
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
+			createVideoTag(stream);
 
-			videoRef.current.load();
-			videoRef.current.play();
+			// videoRef.current.load();
+			// videoRef.current.play();
 
 			cameraStream = stream;
 			console.log('Got MediaStream:', stream);
-			videoRef.current.srcObject = cameraStream;
+			// videoRef.current.srcObject = cameraStream;
 		} catch(error) {
 			console.log(error);
 		}
