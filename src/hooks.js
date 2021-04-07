@@ -59,6 +59,7 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			cameraStream = stream;
 			videoRef.current.srcObject = cameraStream;
 			videoRef.current.play();
+			videoRef.current.hidden = false;
 			// videoRef.current.hidden = false;
 		} catch(error) {
 			console.error('Error accessing media devices.', error);
@@ -88,6 +89,7 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			console.log('Got MediaStream:', stream);
 			videoRef.current.srcObject = cameraStream;
 			videoRef.current.play();
+			videoRef.current.hidden = false;
 			// videoRef.current.hidden = false;
 			// videoRef.current.play();
 			// testVideoRef.current.hidden = true;
