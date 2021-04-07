@@ -61,7 +61,7 @@ export const Camera = () => {
 				autoPlay
 				ref={videoRef}
 				muted
-				// onCanPlay={handleCanPlay}
+				onCanPlay={handleCanPlay}
 				controls={false}
 				onPause={onPause}
 				onPlay={onPlay}
