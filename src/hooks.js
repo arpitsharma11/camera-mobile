@@ -68,7 +68,7 @@ export function useCameraStream(cameraStatus, backCamera) {
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
 			// videoRef.current.play();
 			testVideoRef.current.hidden = true;
-			videoRef.current.hidden = false;
+			// videoRef.current.hidden = false;
 			setMediaStream(stream);
 		} catch(error) {
 			console.log(error);
