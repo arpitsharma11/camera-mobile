@@ -13,17 +13,24 @@ export const Camera = () => {
 	const { toggleCamera, videoRef, testVideoRef, loading, streamAvailable, switchingCamera } = useCameraStream(start, false);
 
 	const handleCanPlay = () => {
-		console.log('pipipi');
+		console.log('handleCanPlay');
 		setIsVideoPlaying(true);
 		videoRef.current.play();
 	}
 
 	const onPlay = () => {
-		console.log('lalalalalal');
+		console.log('onPlay');
+	}
+
+	const onPause = () => {
+		console.log('onPause');
+	}
+
+	const onPlaying = () => {
+		console.log('onPlaying');
 	}
 
 	useEffect(() => {
-		console.log('lalalalalal', streamAvailable);
 		if(!streamAvailable){
 			setIsVideoPlaying(false);
 		}
@@ -36,15 +43,22 @@ export const Camera = () => {
 	return (
 		<div>
 			<div>Camera</div>
-			<video width={`${width}px`} height="600px" autoPlay hidden={true} ref={testVideoRef} muted playsInline onCanPlay={handleCanPlay} controls={false} 
-				style={ { 
-					filter: 'blur(15px)',
-					objectFit: 'cover', }}
-			/>
-			<video id="cameraTest"  width={`${width}px`} height="600px" autoPlay hidden={!isVideoPlaying} ref={videoRef} muted playsInline onCanPlay={handleCanPlay} controls={false} 
+			<video
+				id="cameraTest"
+				width={`${width}px`}
+				height="600px"
+				autoPlay
+				hidden={!isVideoPlaying}
+				ref={videoRef}
+				muted
+				onCanPlay={handleCanPlay}
+				controls={false}
+				onPause={onPause}
+				onPlay={onPlay}
+				onPlaying={onPlaying}
 			/>
 			<button onClick={() => setStart(!start)} >{ start ? 'Stop' : 'Start' }</button><br/>
-			<button onClick={toggleCamera} >Rotate</button>
+			{/* <button onClick={toggleCamera} >Rotate</button> */}
 		</div>
 	);
 }
