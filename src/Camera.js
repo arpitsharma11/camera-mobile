@@ -18,7 +18,7 @@ export const Camera = () => {
 		setIsVideoPlaying(false);
 	}
 
-	const { toggleCamera, videoRef, testVideoRef, loading, streamAvailable, switchingCamera } = useCameraStream(start, false, onChange );
+	const { toggleCamera, videoRef, testVideoRef, loading, streamAvailable, switchingCamera, firstCameraStream, backCameraStream } = useCameraStream(start, false, onChange );
 
 	const handleCanPlay = () => {
 		console.log('handleCanPlay');

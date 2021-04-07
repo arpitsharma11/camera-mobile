@@ -15,6 +15,7 @@ const CONSTRAINTS = {
 }
 let initialLoadDone = false;
 let frontCamera = true;
+let cameraStream = null;
 
 export function useCameraStream(cameraStatus, backCamera, onChange) {
 
@@ -23,6 +24,8 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 	const [loading, setLoading] = useState(true);
 	const [streamAvailable, setStreamAvailable] = useState(false);
 	const [switchingCamera, setSwitchingCamera] = useState(false);
+	const [firstCameraStream, setFirstCameraStream] = useState(null);
+	const [backCameraStream, setBackCameraStream] = useState(null);
 
 	const videoRef = useRef();
 	const testVideoRef = useRef();
@@ -43,10 +46,19 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 
 	const init = async () => {
 		try {
+			videoRef.current.hidden = true;
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
 			console.log('Got MediaStream:', stream);
 			initialLoadDone = true;
-			setMediaStream(stream);
+			// if(frontCamera){
+			// 	setFirstCameraStream(stream);
+			// }else{
+			// 	setBackCameraStream(stream);
+			// }
+			// setMediaStream(stream);
+			cameraStream = stream;
+			videoRef.current.srcObject = cameraStream;
+			// videoRef.current.hidden = false;
 		} catch(error) {
 			console.error('Error accessing media devices.', error);
 			console.log('OverconstrainedError', error.name);
@@ -66,12 +78,22 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			// testVideoRef.current.hidden = false;
 			// videoRef.current.hidden = true;
 			// tracks.forEach(track => track.stop());
-			setMediaStream(null);
+			videoRef.current.hidden = true;
+			
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
+
+			cameraStream = stream;
+			videoRef.current.srcObject = cameraStream;
+			// videoRef.current.hidden = false;
 			// videoRef.current.play();
 			// testVideoRef.current.hidden = true;
 			// videoRef.current.hidden = false;
-			setMediaStream(stream);
+			// if(frontCamera){
+			// 	setFirstCameraStream(stream);
+			// 	setBackCameraStream(null);
+			// }else{
+			// 	setBackCameraStream(stream);
+			// }
 		} catch(error) {
 			console.log(error);
 		}
@@ -91,20 +113,34 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 		}
 	}, [cameraStatus]);
 
-	useEffect(() => {
-		if(mediaStream && videoRef && videoRef.current){
-			videoRef.current.srcObject = mediaStream;
-			// testVideoRef.current.srcObject = mediaStream;
-			setStreamAvailable(true);
-		}
-		if(!mediaStream){
-			setStreamAvailable(false);
-		}
+	// useEffect(() => {
+	// 	if(mediaStream && videoRef && videoRef.current){
+	// 		videoRef.current.srcObject = mediaStream;
+	// 		// testVideoRef.current.srcObject = mediaStream;
+	// 		setStreamAvailable(true);
+	// 	}
+	// 	if(!mediaStream){
+	// 		setStreamAvailable(false);
+	// 	}
 
-		if(mediaStream && switchingCamera){
-			setSwitchingCamera(false);
-		}
-	}, [mediaStream, videoRef]);
+	// 	if(mediaStream && switchingCamera){
+	// 		setSwitchingCamera(false);
+	// 	}
+	// }, [mediaStream, videoRef]);
+
+	// useEffect(() => {
+	// 	if(firstCameraStream && !backCameraStream){
+	// 		console.log('go to front stream');
+	// 		videoRef.current.srcObject = firstCameraStream;
+	// 	}
+
+	// 	if(!firstCameraStream && backCameraStream){
+	// 		console.log('go to back stream');
+	// 		videoRef.current.srcObject = backCameraStream;
+	// 	}
+
+	// 	console.log('')
+	// }, [firstCameraStream, backCameraStream])
 
 	useEffect(() => {
 		console.log('streamAvailable', streamAvailable);
@@ -116,5 +152,5 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 		}
 	}, [frontCamera]);
 	
-	return { toggleCamera, videoRef, loading, streamAvailable, switchingCamera, testVideoRef };
+	return { toggleCamera, videoRef, loading, streamAvailable, switchingCamera, testVideoRef, backCameraStream, firstCameraStream };
 }
