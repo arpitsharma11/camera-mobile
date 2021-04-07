@@ -82,6 +82,9 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			cameraStream.getTracks().forEach(track => track.stop());
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
 
+			videoRef.current.load();
+			videoRef.current.play();
+
 			cameraStream = stream;
 			console.log('Got MediaStream:', stream);
 			videoRef.current.srcObject = cameraStream;
