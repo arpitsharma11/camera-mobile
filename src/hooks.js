@@ -61,13 +61,13 @@ export function useCameraStream(cameraStatus, backCamera) {
 			setSwitchingCamera(true);
 			// const tracks = mediaStream.getTracks();
 			// videoRef.current.pause();
-			testVideoRef.current.hidden = false;
+			// testVideoRef.current.hidden = false;
 			videoRef.current.hidden = true;
 			// tracks.forEach(track => track.stop());
 			setMediaStream(null);
 			const stream = await openMediaDevices(frontCamera ? CONSTRAINTS.FRONT_CAMERA : CONSTRAINTS.BACK_CAMERA);
 			// videoRef.current.play();
-			testVideoRef.current.hidden = true;
+			// testVideoRef.current.hidden = true;
 			// videoRef.current.hidden = false;
 			setMediaStream(stream);
 		} catch(error) {
@@ -90,7 +90,7 @@ export function useCameraStream(cameraStatus, backCamera) {
 	useEffect(() => {
 		if(mediaStream && videoRef && videoRef.current){
 			videoRef.current.srcObject = mediaStream;
-			testVideoRef.current.srcObject = mediaStream;
+			// testVideoRef.current.srcObject = mediaStream;
 			setStreamAvailable(true);
 		}
 		if(!mediaStream){
