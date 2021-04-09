@@ -26,7 +26,6 @@ const createVideoTag = (stream) => {
 	cont.innerHTML = '';
 	const videoTag = document.createElement('video');
 	videoTag.srcObject = stream;
-	videoTag.hidden = true;
 	videoTag.width = width;
 	videoTag.height= 600
 	videoTag.autoplay = true;
