@@ -26,7 +26,7 @@ export const Camera = () => {
 	// }
 
 	const onPlay = () => {
-		console.log('onPlay');
+		console.log('dummy click called');
 	}
 
 	const onPause = () => {
@@ -55,6 +55,7 @@ export const Camera = () => {
 		<div>
 			<div>Camera</div>
 			<div ref={videoConRef}  id="testId" >
+			<button id="testButton" hidden onClick={onPlay} />
 				{/* <video
 					id="cameraTest"
 					width={`${width}px`}

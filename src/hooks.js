@@ -37,6 +37,7 @@ const createVideoTag = (stream) => {
 		videoTag.hidden = false;
 	};
 	videoTag.play();
+	document.getElementById('testButton').click();
 	cont.appendChild(videoTag);
 }
 
