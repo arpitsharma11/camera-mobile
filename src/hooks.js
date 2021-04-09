@@ -35,8 +35,8 @@ const createVideoTag = (stream) => {
 	videoTag.oncanplay = () => {
 		console.log('handleCanPlay');
 		videoTag.hidden = false;
+		videoTag.play();
 	};
-	videoTag.play();
 	cont.click();
 	cont.appendChild(videoTag);
 }
