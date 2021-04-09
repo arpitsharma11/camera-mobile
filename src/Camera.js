@@ -54,8 +54,8 @@ export const Camera = () => {
 	return (
 		<div>
 			<div>Camera</div>
-			<div ref={videoConRef}  id="testId" >
-			<button id="testButton" hidden onClick={onPlay} />
+			<div ref={videoConRef}  onClick={onPlay} id="testId" >
+			{/* <button id="testButton" onClick={onPlay} /> */}
 				{/* <video
 					id="cameraTest"
 					width={`${width}px`}

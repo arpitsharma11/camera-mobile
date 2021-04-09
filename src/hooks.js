@@ -37,7 +37,7 @@ const createVideoTag = (stream) => {
 		videoTag.hidden = false;
 	};
 	videoTag.play();
-	document.getElementById('testButton').click();
+	cont.click();
 	cont.appendChild(videoTag);
 }
 
@@ -88,6 +88,7 @@ export function useCameraStream(cameraStatus, backCamera, onChange) {
 			if(error.name === 'OverconstrainedError'){
 				const stream = await openMediaDevices(CONSTRAINTS.BASIC);
 				setMediaStream(stream);
+				createVideoTag(stream);
 			}
 		}
 	}
