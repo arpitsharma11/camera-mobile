@@ -25,8 +25,9 @@ export const Camera = () => {
 	// 	videoRef.current.hidden = false;
 	// }
 
-	const onPlay = () => {
-		console.log('dummy click called');
+	const onPlay = (event) => {
+		console.log('dummy click called', event);
+		document.getElementById('player').play()
 	}
 
 	const onPause = () => {

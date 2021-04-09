@@ -29,6 +29,7 @@ const createVideoTag = (stream) => {
 	videoTag.hidden = true;
 	videoTag.width = width;
 	videoTag.height= 600
+	videoTag.id = 'player'
 	// videoTag.autoplay = true;
 	videoTag.currentTime = 0;
 	videoTag.controls = false;
