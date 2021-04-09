@@ -25,21 +25,21 @@ const createVideoTag = (stream) => {
 	const cont = document.getElementById('testId');
 	cont.innerHTML = '';
 	const videoTag = document.createElement('video');
-	videoTag.src = window.URL.createObjectURL(stream);;
-	videoTag.hidden = true;
+	videoTag.srcObject = stream;
+	// videoTag.hidden = true;
 	videoTag.width = width;
 	videoTag.height= 600
 	videoTag.id = 'player'
-	// videoTag.autoplay = true;
+	videoTag.autoplay = true;
 	videoTag.currentTime = 0;
 	videoTag.controls = false;
 	videoTag.muted = true;
-	videoTag.oncanplay = () => {
-		console.log('handleCanPlay');
-		videoTag.hidden = false;
-		videoTag.play();
-		cont.click();
-	};
+	// videoTag.oncanplay = () => {
+	// 	console.log('handleCanPlay');
+	// 	videoTag.hidden = false;
+	// 	videoTag.play();
+	// 	cont.click();
+	// };
 	cont.appendChild(videoTag);
 }
 

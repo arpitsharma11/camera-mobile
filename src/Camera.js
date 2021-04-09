@@ -25,10 +25,10 @@ export const Camera = () => {
 	// 	videoRef.current.hidden = false;
 	// }
 
-	const onPlay = (event) => {
-		console.log('dummy click called', event);
-		document.getElementById('player').play()
-	}
+	// const onPlay = (event) => {
+	// 	console.log('dummy click called', event);
+	// 	document.getElementById('player').play()
+	// }
 
 	const onPause = () => {
 		console.log('onPause');
@@ -55,7 +55,7 @@ export const Camera = () => {
 	return (
 		<div>
 			<div>Camera</div>
-			<div ref={videoConRef}  onClick={onPlay} id="testId" >
+			<div ref={videoConRef} id="testId" >
 			{/* <button id="testButton" onClick={onPlay} /> */}
 				{/* <video
 					id="cameraTest"
